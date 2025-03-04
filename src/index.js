@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const dotenv = require('dotenv');
 const api = require('./api');
 
@@ -13,16 +12,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, '../public')));
-
 // API Routes
 app.use('/api', api);
 
-// Serve the main HTML file for any other route
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
-});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -37,7 +29,6 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-    console.log(`Open http://localhost:${PORT} in your browser to use the chat`);
 });
 
 module.exports = app;
