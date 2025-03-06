@@ -1,5 +1,6 @@
 const openai = require('../../configs/openai');
 const Chat = require('../../models/chat');
+const User = require('../../models/user');
 
 /**
  * Create a new conversation
@@ -174,6 +175,19 @@ const sendMessage = async (req, res, next) => {
         next(error);
     }
 };
+
+
+// const personalityCheck = async (req, res, next) => {
+//     const { userId } = req.user;
+//     const userDB = await User.findById(userId);
+//     if (!userDB) {
+//         return res.status(404).json({
+//             success: false,
+//             message: 'User not found'
+//         });
+//     }
+    
+// }
 
 module.exports = {
     createConversation,
